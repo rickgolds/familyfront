@@ -1,0 +1,26 @@
+.input-group {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  border: 1px solid #ffefe6;
+  border-radius: 10px;
+  padding: 8px 10px;
+  background-color: var(--white-color);
+
+  &__left-icon {
+    margin-right: 14px;
+  }
+
+  &__right-icon {
+    margin-right: 12px;
+    margin-left: 14px;
+  }
+
+  &__input {
+    width: 100%;
+    border: none;
+    font-size: 16px;
+    color: var(--main-dark);
+    background-color: transparent;
+  }
+}

@@ -1,0 +1,5 @@
+<app-dashboard *ngIf="(currentScreen$ | async) === 'dashboard'" />
+<app-deposits *ngIf="(currentScreen$ | async) === 'deposits'" />
+
+<app-notification *ngIf="(currentScreen$ | async) === 'notification'" />
+<app-more *ngIf="(currentScreen$ | async) === 'more'" />

@@ -1,0 +1,10 @@
+<div
+  [className]="on ? 'switcher switcher__on clickable' : 'switcher clickable'"
+  [ngStyle]="{
+    'background-color': on ? '#56ACEE' : '#B0B0B0',
+    'justify-content': on ? 'flex-end' : 'flex-start'
+  }"
+  (click)="toggle()"
+>
+  <div [className]="'switcher__circle'"></div>
+</div>

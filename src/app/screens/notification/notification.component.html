@@ -1,0 +1,27 @@
+<img src="/assets/other/01.png" alt="background" class="background" />
+
+<app-header />
+
+<main [className]="'scrollable main container notification'">
+  <h2 [className]="'notification__title'">Powiadomienia</h2>
+  <ul [className]="'notification__list'">
+    <li
+      [className]="'notification__list-item'"
+      *ngFor="let notification of notifications"
+    >
+      <div [className]="'notification__list-item-header'">
+        <img [src]="notification.icon" alt="icon" />
+        <h5 [className]="'number-of-lines-1'">{{ notification.title }}</h5>
+      </div>
+      <p
+        *ngIf="notification.description"
+        [className]="'t16 notification__description'"
+      >
+        {{ notification.description }}
+      </p>
+      <span [className]="'t12'">{{ notification.date }}</span>
+    </li>
+  </ul>
+</main>
+
+<app-footer />

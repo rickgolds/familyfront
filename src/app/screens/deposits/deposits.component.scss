@@ -1,0 +1,728 @@
+:host {
+  .title {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    font-family: "Source Sans 3", sans-serif;
+  }
+
+  .lists {
+    margin-bottom: 30px;
+
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    &__title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #333;
+      font-family: "Source Sans 3", sans-serif;
+    }
+
+    &__add-button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 5px;
+
+      fa-icon {
+        font-size: 24px;
+        color: var(--main-color);
+      }
+    }
+
+    &__new {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+      background-color: #fff7f2;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    &__new-input {
+      flex: 1;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+      font-family: "Source Sans 3", sans-serif;
+    }
+
+    &__new-save,
+    &__new-cancel {
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      font-family: "Source Sans 3", sans-serif;
+    }
+
+    &__new-save {
+      background-color: var(--main-color);
+      color: white;
+    }
+
+    &__new-cancel {
+      background-color: #f44336;
+      color: white;
+    }
+
+    &__tabs {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 5px;
+    }
+
+    &__tab {
+      display: flex;
+      align-items: center;
+      padding: 8px 15px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      font-family: "Source Sans 3", sans-serif;
+    }
+
+    &__tab--active {
+      background-color: var(--main-color);
+      color: white;
+      border-color: var(--main-color);
+    }
+
+    &__edit-input {
+      padding: 5px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+      font-family: "Source Sans 3", sans-serif;
+    }
+
+    &__tab-actions {
+      display: flex;
+      gap: 5px;
+      margin-left: 10px;
+    }
+
+    &__tab-action {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 2px;
+
+      fa-icon {
+        font-size: 16px;
+        color: #333;
+      }
+
+      &--edit {
+        color: #2196f3;
+      }
+
+      &--delete {
+        color: #f44336;
+      }
+    }
+  }
+
+  .default-tasks {
+    margin-bottom: 20px;
+
+    &__toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 10px 15px;
+      background-color: #f5e9e2;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      font-family: "Source Sans 3", sans-serif;
+    }
+
+    &__toggle:hover {
+      background-color: #f0d9cc;
+    }
+
+    &__toggle-icon {
+      font-size: 12px;
+      font-family: "Source Sans 3", sans-serif;
+    }
+
+    &__list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #fff7f2;
+      border-radius: 8px;
+    }
+
+    &__item {
+      padding: 8px 15px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 20px;
+      font-size: 14px;
+      font-family: "Source Sans 3", sans-serif;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    &__item:hover {
+      background-color: #f5e9e2;
+    }
+
+    &__assign {
+      margin-top: 10px;
+      padding: 15px;
+      background-color: #fff7f2;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+
+    &__assign-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 10px;
+      font-family: "Source Sans 3", sans-serif;
+    }
+
+    &__assign-select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+      font-family: "Source Sans 3", sans-serif;
+      margin-bottom: 10px;
+    }
+
+    &__assign-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    &__assign-confirm,
+    &__assign-cancel {
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      font-family: "Source Sans 3", sans-serif;
+    }
+
+    &__assign-confirm {
+      background-color: var(--main-color);
+      color: white;
+    }
+
+    &__assign-cancel {
+      background-color: #f44336;
+      color: white;
+    }
+  }
+
+  .task-form {
+    background-color: #fff7f2;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+
+    &__title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #333;
+      font-family: "Source Sans 3", sans-serif;
+    }
+
+    &__fields {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    &__input,
+    &__textarea,
+    &__select,
+    &__date {
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+      font-family: "Source Sans 3", sans-serif;
+      background-color: #fff;
+      width: 100%;
+      box-sizing: border-box;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    &__date-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    &__date {
+      background-color: #f5e9e2;
+      color: #333;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      padding-left: 35px;
+    }
+
+    &__date-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #666;
+      font-size: 16px;
+      pointer-events: none;
+    }
+
+    &__date:hover {
+      border-color: var(--main-color);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    &__date:focus {
+      outline: none;
+      border-color: var(--main-color);
+      box-shadow: 0 0 0 3px rgba(var(--main-color-rgb), 0.2);
+    }
+
+    &__date::-webkit-calendar-picker-indicator {
+      filter: invert(48%) sepia(13%) saturate(3207%) hue-rotate(130deg)
+        brightness(95%) contrast(80%);
+      cursor: pointer;
+    }
+
+    &__textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    &__button {
+      width: 100%;
+      max-width: 150px;
+      align-self: flex-end;
+    }
+  }
+
+  .tasks {
+    width: 100%;
+    max-width: 100%; /* Dopasowanie do szerokości kontenera */
+    overflow-x: auto; /* Przewijanie poziome w razie potrzeby */
+    margin-bottom: 30px;
+
+    &__table {
+      width: 100%;
+      max-width: 100%; /* Ograniczenie do szerokości rodzica */
+      border-collapse: collapse;
+      background-color: #fff7f2;
+      border-radius: 10px;
+      overflow: hidden;
+      table-layout: fixed; /* Stała szerokość kolumn dla lepszej kontroli */
+    }
+
+    th,
+    td {
+      padding: 10px 8px; /* Zmniejszony padding dla większej kompresji */
+      text-align: left;
+      font-family: "Source Sans 3", sans-serif;
+      font-size: 14px;
+      overflow: hidden; /* Ukrywa nadmiar tekstu */
+      // text-overflow: ellipsis; /* Dodaje kropki dla przyciętego tekstu */
+      // white-space: nowrap; /* Zapobiega zawijaniu tekstu */
+    }
+
+    th {
+      background-color: var(--main-color); /* #ff8a71 z _variables.scss */
+      color: var(--white-color); /* #fff */
+      font-weight: 600;
+      width: 14.28%; /* Równomierne rozmieszczenie dla 7 kolumn (100% / 7) */
+    }
+
+    td {
+      border-bottom: 1px solid var(--border-color); /* #eeeeee */
+      color: var(--main-dark); /* #040325 */
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover {
+      background-color: var(--pastel-color); /* #fcedea */
+    }
+
+    &__status {
+      cursor: pointer;
+      padding: 5px 8px;
+      border-radius: 15px;
+      font-weight: 600;
+      display: inline-block;
+      font-family: "Source Sans 3", sans-serif;
+    }
+
+    &__status.completed {
+      background-color: #4caf50;
+      color: var(--white-color);
+    }
+
+    &__status.pending {
+      background-color: #ff9800;
+      color: var(--white-color);
+    }
+
+    &__action-button {
+      padding: 5px 8px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 12px; /* Mniejszy rozmiar dla ciasnych kolumn */
+      margin-right: 3px;
+      transition: background-color 0.3s;
+      font-family: "Source Sans 3", sans-serif;
+    }
+
+    &__action-button--edit {
+      background-color: #2196f3;
+      color: var(--white-color);
+    }
+
+    &__action-button--edit:hover {
+      background-color: #1976d2;
+    }
+
+    &__action-button--save {
+      background-color: #4caf50;
+      color: var(--white-color);
+    }
+
+    &__action-button--save:hover {
+      background-color: #388e3c;
+    }
+
+    &__action-button--delete {
+      background-color: #f44336;
+      color: var(--white-color);
+    }
+
+    &__action-button--delete:hover {
+      background-color: #d32f2f;
+    }
+  }
+  .task-edit {
+    &__input,
+    &__textarea,
+    &__select,
+    &__date {
+      padding: 5px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+      font-family: "Source Sans 3", sans-serif;
+      width: 100%;
+      box-sizing: border-box;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    &__date-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    &__date {
+      background-color: #f5e9e2;
+      color: #333;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      padding-left: 30px;
+    }
+
+    &__date-icon {
+      position: absolute;
+      left: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #666;
+      font-size: 14px;
+      pointer-events: none;
+    }
+
+    &__date:hover {
+      border-color: var(--main-color);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    &__date:focus {
+      outline: none;
+      border-color: var(--main-color);
+      box-shadow: 0 0 0 3px rgba(var(--main-color-rgb), 0.2);
+    }
+
+    &__date::-webkit-calendar-picker-indicator {
+      filter: invert(48%) sepia(13%) saturate(3207%) hue-rotate(130deg)
+        brightness(95%) contrast(80%);
+      cursor: pointer;
+    }
+
+    &__textarea {
+      resize: vertical;
+      min-height: 50px;
+    }
+  }
+
+  // Responsywność dla ekranów mobilnych
+  @media (max-width: 768px) {
+    .lists {
+      &__header {
+        margin-bottom: 10px;
+      }
+
+      &__title {
+        font-size: 16px;
+        font-family: "Source Sans 3", sans-serif;
+      }
+
+      &__add-button {
+        padding: 3px;
+
+        fa-icon {
+          font-size: 20px;
+        }
+      }
+
+      &__new {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      &__new-input,
+      &__new-save,
+      &__new-cancel {
+        font-size: 12px;
+        padding: 6px;
+        font-family: "Source Sans 3", sans-serif;
+      }
+
+      &__tabs {
+        gap: 8px;
+      }
+
+      &__tab {
+        padding: 6px 12px;
+        font-size: 12px;
+        font-family: "Source Sans 3", sans-serif;
+      }
+
+      &__edit-input {
+        font-size: 12px;
+        padding: 3px;
+        font-family: "Source Sans 3", sans-serif;
+      }
+
+      &__tab-actions {
+        margin-left: 8px;
+        gap: 3px;
+      }
+
+      &__tab-action {
+        fa-icon {
+          font-size: 14px;
+        }
+      }
+    }
+
+    .default-tasks {
+      &__toggle {
+        font-size: 14px;
+        padding: 8px 12px;
+        font-family: "Source Sans 3", sans-serif;
+      }
+
+      &__toggle-icon {
+        font-size: 10px;
+        font-family: "Source Sans 3", sans-serif;
+      }
+
+      &__list {
+        gap: 8px;
+        padding: 8px;
+      }
+
+      &__item {
+        font-size: 12px;
+        padding: 6px 12px;
+        font-family: "Source Sans 3", sans-serif;
+      }
+
+      &__assign {
+        padding: 10px;
+      }
+
+      &__assign-title {
+        font-size: 14px;
+        font-family: "Source Sans 3", sans-serif;
+      }
+
+      &__assign-select {
+        font-size: 12px;
+        padding: 6px;
+        font-family: "Source Sans 3", sans-serif;
+      }
+
+      &__assign-confirm,
+      &__assign-cancel {
+        font-size: 12px;
+        padding: 6px 12px;
+        font-family: "Source Sans 3", sans-serif;
+      }
+    }
+
+    .task-form {
+      padding: 15px;
+
+      &__title {
+        font-size: 16px;
+        font-family: "Source Sans 3", sans-serif;
+      }
+
+      &__input,
+      &__textarea,
+      &__select,
+      &__date {
+        font-size: 12px;
+        padding: 8px;
+        font-family: "Source Sans 3", sans-serif;
+      }
+
+      &__date {
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      }
+
+      &__date:hover,
+      &__date:focus {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+      }
+
+      &__date-icon {
+        font-size: 14px;
+        left: 8px;
+      }
+
+      &__button {
+        max-width: 100%;
+      }
+    }
+
+    .tasks {
+      overflow-x: auto;
+
+      &__table {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      thead {
+        display: none;
+      }
+
+      tbody,
+      tr {
+        display: block;
+      }
+
+      tr {
+        margin-bottom: 15px;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        background-color: var(--white-color);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px;
+        border-bottom: 1px solid #eee;
+        text-align: right;
+        font-size: 12px;
+        font-family: "Source Sans 3", sans-serif;
+        white-space: normal; /* Pozwala na zawijanie tekstu w widoku mobilnym */
+      }
+
+      td:before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #555;
+        text-align: left;
+        flex: 1;
+        font-family: "Source Sans 3", sans-serif;
+      }
+
+      td:last-child {
+        border-bottom: none;
+      }
+
+      &__status {
+        padding: 4px 8px;
+        font-size: 12px;
+        font-family: "Source Sans 3", sans-serif;
+      }
+
+      &__action-button {
+        font-size: 12px;
+        padding: 4px 8px;
+        margin-right: 3px;
+        font-family: "Source Sans 3", sans-serif;
+      }
+    }
+
+    .task-edit {
+      &__input,
+      &__textarea,
+      &__select,
+      &__date {
+        font-size: 12px;
+        padding: 4px;
+        font-family: "Source Sans 3", sans-serif;
+      }
+
+      &__date {
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      }
+
+      &__date:hover,
+      &__date:focus {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+      }
+
+      &__date-icon {
+        font-size: 12px;
+        left: 6px;
+      }
+    }
+  }
+}

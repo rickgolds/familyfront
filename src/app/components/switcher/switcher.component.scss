@@ -1,0 +1,17 @@
+:host {
+  .switcher {
+    width: 40px;
+    padding: 1.5px;
+    background-color: #56acee;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: row;
+
+    &__circle {
+      width: 21px;
+      height: 21px;
+      background-color: #fff;
+      border-radius: 50%;
+    }
+  }
+}

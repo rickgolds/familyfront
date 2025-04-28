@@ -1,0 +1,38 @@
+<header class="header">
+  <a
+    (click)="goBack()"
+    class="header__left-icon"
+    *ngIf="canGoBack() && showGoBack"
+  >
+    <img src="/assets/svg/go-back.svg" alt="go back icon" />
+  </a>
+
+  <a *ngIf="user" [className]="'header__left-icon'" [routerLink]="'/profile'">
+    <img
+      alt="user icon"
+      src="https://george-fx.github.io/apitex_api/assets/users/01.png"
+      [className]="'header__user-icon'"
+    />
+    <span [className]="'t16 header__user-name'">
+      {{ currentUser ? currentUser.name + " " + currentUser.lastname : "Gość" }}
+    </span>
+  </a>
+
+  <h4 *ngIf="title" class="header__mdl-element">{{ title }}</h4>
+
+  <a
+    *ngIf="showCard"
+    [className]="'header__right-icon'"
+    [routerLink]="'/card-menu'"
+  >
+    <img alt="card icon" src="/assets/svg/credit-card-2.svg" />
+  </a>
+
+  <a
+    *ngIf="showDocument"
+    [routerLink]="'/top-up-payment'"
+    [className]="'header__right-icon'"
+  >
+    <img alt="card icon" src="/assets/svg/document.svg" />
+  </a>
+</header>

@@ -1,0 +1,27 @@
+:host {
+  .main {
+    padding-top: 10px;
+
+    &__title {
+      margin-bottom: 20px;
+    }
+
+    &__list-title {
+      margin-bottom: 10px;
+      color: var(--main-dark);
+    }
+
+    &__list-description {
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    &__list-item {
+      margin-bottom: 30px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

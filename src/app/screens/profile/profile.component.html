@@ -1,0 +1,70 @@
+<app-header [title]="'Profil'" [showGoBack]="true" />
+
+<main [className]="'scrollable main container profile'">
+  <img
+    src="https://george-fx.github.io/apitex_api/assets/users/01.png"
+    alt="avatar"
+    [className]="'profile__avatar'"
+  />
+  <h4 [className]="'profile__name'">
+    {{ currentUser ? currentUser.name + " " + currentUser.lastname : "Gość" }}
+  </h4>
+  <span [className]="'profile__phone t16'">Syn</span>
+  <ul [className]="'profile__list'">
+    <li
+      [className]="'profile__list-item clickable'"
+      [routerLink]="'/edit-personal-info'"
+    >
+      <img
+        src="assets/svg/profile-user.svg"
+        alt="user"
+        [className]="'profile__icon'"
+      />
+      <h5 [className]="'profile__list-item-title'">Informacje osobiste</h5>
+      <img
+        src="assets/svg/arrow-right.svg"
+        alt="arrow"
+        [className]="'profile__arrow'"
+      />
+    </li>
+    <li [className]="'profile__list-item clickable'">
+      <img
+        src="assets/svg/profile-comment.svg"
+        alt="user"
+        [className]="'profile__icon'"
+      />
+      <h5 [className]="'profile__list-item-title'">Powiadomienia</h5>
+      <app-switcher />
+    </li>
+    <li [className]="'profile__list-item clickable'">
+      <img
+        alt="user"
+        [className]="'profile__icon'"
+        src="assets/svg/face-id.svg"
+      />
+      <h5 [className]="'profile__list-item-title'">Face ID</h5>
+      <app-switcher />
+    </li>
+    <li [className]="'profile__list-item clickable'">
+      <img
+        src="assets/svg/language.svg"
+        alt="user"
+        [className]="'profile__icon'"
+      />
+      <h5 [className]="'profile__list-item-title'">Język</h5>
+      <div [className]="'profile__list-item-lang'">
+        <span [className]="'t12'">PL</span>
+        <img
+          src="assets/svg/arrow-right.svg"
+          alt="arrow"
+          [className]="'profile__arrow'"
+        />
+      </div>
+    </li>
+  </ul>
+  <app-button
+    [text]="'Wyloguj'"
+    [colorScheme]="'secondary'"
+    (click)="logout()"
+  />
+</main>

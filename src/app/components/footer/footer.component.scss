@@ -1,0 +1,27 @@
+:host {
+  .footer {
+    margin: 20px;
+    border-radius: 14px;
+    padding-left: 22px;
+    padding-right: 22px;
+    z-index: 9999;
+    background-color: var(--main-dark);
+
+    &__list {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    &__item {
+      color: white;
+    }
+
+    &__icon {
+      padding-right: 16px;
+      padding-left: 16px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+  }
+}

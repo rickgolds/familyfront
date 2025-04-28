@@ -1,0 +1,57 @@
+:host {
+  .background {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+  }
+
+  .edit {
+    padding-top: 10px;
+
+    &__avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    &__avatar-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &__avatar-overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      inset: 0;
+      border-radius: 50%;
+      background-color: rgba(4, 3, 37, 0.4);
+    }
+
+    &__avatar-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    &__avatar-camera {
+      position: absolute;
+    }
+
+    &__input {
+      display: block;
+      margin-bottom: 10px;
+
+      &-last {
+        display: block;
+        margin-bottom: 14px;
+      }
+    }
+  }
+}

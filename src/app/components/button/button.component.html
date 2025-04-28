@@ -1,0 +1,20 @@
+<button
+  [class]="'button'"
+  (click)="onClick()"
+  [ngStyle]="{
+    'background-color':
+      colorScheme === 'secondary'
+        ? '#FFD9C3'
+        : colorScheme === 'primary'
+        ? '#040325'
+        : '',
+    color:
+      colorScheme === 'secondary'
+        ? '#040325'
+        : colorScheme === 'primary'
+        ? '#FFFFFF'
+        : ''
+  }"
+>
+  {{ text }}
+</button>

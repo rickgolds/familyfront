@@ -1,0 +1,14 @@
+<img src="/assets/other/01.png" alt="background" class="background" />
+
+<main [className]="'scrollable container main'">
+  <img src="/assets/svg/status-user.svg" alt="check" class="main__icon" />
+  <h2 [className]="'main__title'">Konto założone!</h2>
+  <p [className]="'main__description t16'">
+    Twoje konto zostało pomyślnie stworzone.
+  </p>
+  <app-button
+    [text]="'Gotowe'"
+    [routerLink]="'/sign-in'"
+    [className]="'main__button'"
+  ></app-button>
+</main>

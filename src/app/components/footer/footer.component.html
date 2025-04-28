@@ -1,0 +1,33 @@
+<footer [className]="'footer'">
+  <ul [className]="'footer__list'">
+    <li
+      [className]="'footer__item clickable'"
+      *ngFor="let tab of tabs; let i = index"
+      (click)="
+        tab.route === tabs[0].route
+          ? goToDashboard()
+          : tab.route === tabs[1].route
+          ? goToDeposits()
+          : tab.route === tabs[2].route
+          ? goToOrder()
+          : tab.route === tabs[3].route
+          ? goToWishlist()
+          : tab.route === tabs[4].route
+          ? goToProfile()
+          : $event.preventDefault()
+      "
+    >
+      <a>
+        <img
+          [src]="
+            (currentScreen$ | async) === tab.route
+              ? tab.activeIcon
+              : tab.inactiveIcon
+          "
+          alt="tab"
+          [className]="'footer__icon'"
+        />
+      </a>
+    </li>
+  </ul>
+</footer>

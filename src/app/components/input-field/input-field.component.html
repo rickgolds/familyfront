@@ -1,0 +1,23 @@
+<div class="input-group">
+  <img
+    [src]="leftIcon"
+    alt="icon"
+    class="input-group__left-icon"
+    *ngIf="leftIcon"
+  />
+  <input
+    class="input-group__input"
+    [placeholder]="placeholder"
+    [type]="type"
+    [value]="value"
+    (input)="onInputChange($event)"
+    (blur)="onTouched()"
+    [disabled]="disabled"
+  />
+  <img
+    alt="icon"
+    [src]="rightIcon"
+    *ngIf="rightIcon"
+    class="input-group__right-icon"
+  />
+</div>

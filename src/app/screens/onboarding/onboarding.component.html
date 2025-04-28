@@ -1,0 +1,50 @@
+<section [className]="'carousel'">
+  <swiper-container
+    slides-per-view="1"
+    class="carousel__swiper-container"
+    (swiperslidechange)="onSlideChange($event)"
+  >
+    <swiper-slide
+      *ngFor="let slide of onboardingData"
+      [className]="'carousel__slide'"
+    >
+      <img [src]="slide.image" alt="slide" [className]="'carousel__image'" />
+    </swiper-slide>
+  </swiper-container>
+</section>
+
+<section [className]="'titles'">
+  <h1 [className]="'titles__text'">{{ currentTitle1 }}</h1>
+  <h1 [className]="'titles__text'">{{ currentTitle2 }}</h1>
+</section>
+
+<section class="description">
+  <p [className]="'description__text t16'">
+    {{ descriptionLine1 }}
+  </p>
+  <p [className]="'description__text t16'">
+    {{ descriptionLine2 }}
+  </p>
+</section>
+
+<section [className]="'dots'">
+  <ul [className]="'dots__list'">
+    <li
+      *ngFor="let slide of onboardingData; let i = index"
+      [className]="
+        i === activeSlide
+          ? 'dots__list-item dots__list-item--active'
+          : 'dots__list-item'
+      "
+    ></li>
+  </ul>
+</section>
+
+<button [className]="'button'">
+  <app-button
+    [text]="'Get started'"
+    [colorScheme]="'secondary'"
+    [className]="'button__button'"
+    onClick="window.location.href='/sign-in'"
+  ></app-button>
+</button>

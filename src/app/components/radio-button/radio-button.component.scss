@@ -1,0 +1,18 @@
+:host {
+  .radio-button {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1px solid #6c6d84;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__circle {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #55acee;
+    }
+  }
+}

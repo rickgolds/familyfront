@@ -1,0 +1,193 @@
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable, BehaviorSubject} from 'rxjs';
+import {tap} from 'rxjs/operators';
+import {jwtDecode} from 'jwt-decode';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class AuthService {
+  private apiUrl = 'http://localhost:3000';
+
+  private userSubject = new BehaviorSubject<any>(null);
+  user$ = this.userSubject.asObservable();
+
+  constructor(private http: HttpClient) {
+    const token =
+      localStorage.getItem('token') || sessionStorage.getItem('token');
+    if (token) {
+      this.loadUserFromToken(token);
+    }
+  }
+
+  signup(
+    name: string,
+    lastname: string,
+    email: string,
+    nickname: string,
+    password: string,
+    confirmPassword: string
+  ): Observable<any> {
+    return this.http.post(`${this.apiUrl}/signup`, {
+      name,
+      lastname,
+      email,
+      nickname,
+      password,
+      confirmPassword,
+    });
+  }
+
+  signin(identifier: string, password: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/signin`, {identifier, password}).pipe(
+      tap((response: any) => {
+        if (response.token) {
+          this.loadUserFromToken(response.token);
+        }
+      })
+    );
+  }
+
+  private loadUserFromToken(token: string): void {
+    try {
+      const decoded: any = jwtDecode(token);
+      this.userSubject.next(decoded);
+    } catch (error) {
+      console.error('Błąd dekodowania tokena:', error);
+      this.userSubject.next(null);
+    }
+  }
+
+  logout(): void {
+    localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
+    this.userSubject.next(null);
+  }
+
+  getCurrentUser(): any {
+    return this.userSubject.value;
+  }
+
+  getUsers(): Observable<any> {
+    const token =
+      localStorage.getItem('token') || sessionStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.get(`${this.apiUrl}/users`, {headers});
+  }
+
+  getTaskLists(): Observable<any> {
+    const token =
+      localStorage.getItem('token') || sessionStorage.getItem('token');
+    console.log('Pobrany token w getTaskLists:', token);
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.get(`${this.apiUrl}/task-lists`, {headers});
+  }
+
+  addTaskList(name: string): Observable<any> {
+    const token =
+      localStorage.getItem('token') || sessionStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.post(`${this.apiUrl}/task-lists`, {name}, {headers});
+  }
+
+  updateTaskList(listId: number, name: string): Observable<any> {
+    const token =
+      localStorage.getItem('token') || sessionStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.put(
+      `${this.apiUrl}/task-lists/${listId}`,
+      {name},
+      {headers}
+    );
+  }
+
+  deleteTaskList(listId: number): Observable<any> {
+    const token =
+      localStorage.getItem('token') || sessionStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.delete(`${this.apiUrl}/task-lists/${listId}`, {headers});
+  }
+
+  getTasks(listId: number): Observable<any> {
+    const token =
+      localStorage.getItem('token') || sessionStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.get(`${this.apiUrl}/tasks/${listId}`, {headers});
+  }
+
+  addTask(task: any): Observable<any> {
+    const token =
+      localStorage.getItem('token') || sessionStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.post(`${this.apiUrl}/tasks`, task, {headers});
+  }
+
+  updateTask(taskId: number, task: any): Observable<any> {
+    const token =
+      localStorage.getItem('token') || sessionStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+
+    // Kopiujemy obiekt task, aby nie modyfikować oryginalnego
+    const updatedTask = {...task};
+
+    // Formatowanie due_date
+    if (updatedTask.due_date) {
+      // Jeśli due_date jest obiektem Date lub stringiem ISO, konwertujemy na YYYY-MM-DD
+      const date = new Date(updatedTask.due_date);
+      if (!isNaN(date.getTime())) {
+        // Sprawdzamy, czy data jest poprawna
+        const year = date.getFullYear();
+        const month = ('0' + (date.getMonth() + 1)).slice(-2);
+        const day = ('0' + date.getDate()).slice(-2);
+        updatedTask.due_date = `${year}-${month}-${day}`;
+      } else {
+        console.error('Nieprawidłowa data due_date:', updatedTask.due_date);
+        updatedTask.due_date = null;
+      }
+    } else {
+      updatedTask.due_date = null;
+    }
+
+    // Walidacja due_date (po sformatowaniu)
+    if (
+      updatedTask.due_date &&
+      !/^\d{4}-\d{2}-\d{2}$/.test(updatedTask.due_date)
+    ) {
+      console.error(
+        'Nieprawidłowy format due_date po sformatowaniu:',
+        updatedTask.due_date
+      );
+      updatedTask.due_date = null;
+    }
+
+    return this.http.put(`${this.apiUrl}/tasks/${taskId}`, updatedTask, {
+      headers,
+    });
+  }
+
+  deleteTask(taskId: number): Observable<any> {
+    const token =
+      localStorage.getItem('token') || sessionStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.delete(`${this.apiUrl}/tasks/${taskId}`, {headers});
+  }
+}

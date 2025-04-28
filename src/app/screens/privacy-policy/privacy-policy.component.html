@@ -1,0 +1,14 @@
+<app-header [showGoBack]="true"></app-header>
+
+<main [className]="'scrollable container main'">
+  <h2 [className]="'main__title'">Privacy policy</h2>
+
+  <ul [className]="'main__list'">
+    <li [className]="'main__list-item'" *ngFor="let item of privacyPolicy">
+      <h4 [className]="'number-of-lines-1 main__list-title'">
+        {{ item.title }}
+      </h4>
+      <p [className]="'main__list-description t16'">{{ item.description }}</p>
+    </li>
+  </ul>
+</main>

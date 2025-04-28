@@ -1,0 +1,21 @@
+<img src="/assets/other/01.png" alt="background" class="background" />
+
+<app-header [title]="'Verify number'" [showGoBack]="true" />
+
+<main [className]="'scrollabel container main'">
+  <p [className]="'t16 main__description'">
+    We have sent you an SMS with a code to number +17 0123456789.
+  </p>
+
+  <app-input-field
+    [leftIcon]="'/assets/svg/phone.svg'"
+    [className]="'main__input-field'"
+    [placeholder]="'+171234567890'"
+    [className]="'main__input-field'"
+  ></app-input-field>
+
+  <app-button
+    [text]="'Confirm'"
+    [routerLink]="'/confirmation-code'"
+  ></app-button>
+</main>

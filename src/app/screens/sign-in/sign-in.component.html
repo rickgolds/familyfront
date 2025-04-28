@@ -1,0 +1,94 @@
+<img src="/assets/other/01.png" alt="background" class="background" />
+
+<app-header />
+
+<main class="scrollable container main">
+  <h1 class="main__h1">Witamy w Family Event List!</h1>
+
+  <form (ngSubmit)="onSubmit()">
+    <app-input-field
+      [(ngModel)]="identifier"
+      name="identifier"
+      [leftIcon]="'/assets/svg/mail.svg'"
+      [placeholder]="'Wprowadź swój e-mail lub nick'"
+    >
+      required ></app-input-field
+    >
+
+    <app-input-field
+      [(ngModel)]="password"
+      name="password"
+      type="password"
+      [leftIcon]="'/assets/svg/key.svg'"
+      [placeholder]="'Wprowadź hasło'"
+      required
+    ></app-input-field>
+
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+    <div *ngIf="successMessage" class="success-message">
+      {{ successMessage }}
+    </div>
+
+    <div class="main__remember-me-wrapper">
+      <div class="main__remember-me">
+        <div class="main__checkbox-wrapper" (click)="toggleRememberMe()">
+          <img
+            *ngIf="rememberMe"
+            src="/assets/svg/rm-check.svg"
+            alt="check"
+            class="check-icon"
+          />
+        </div>
+        <button class="t16 main__remember-me-text" (click)="toggleRememberMe()">
+          Zapamiętaj mnie
+        </button>
+      </div>
+      <button class="t16 main__forgot-password">
+        <a
+          [routerLink]="['/forgot-password']"
+          class="main__forgot-password-link"
+          >Zapomniane hasło?</a
+        >
+      </button>
+    </div>
+
+    <app-button type="submit" [text]="'Zaloguj'" />
+  </form>
+
+  <span class="t16 main__no-account">
+    Nie masz konta?
+    <a class="main__no-account-register" [routerLink]="['/sign-up']"
+      >Zarejestruj się</a
+    >
+  </span>
+
+  <div>
+    <span class="t16 main__socials-text">Zaloguj się za pomocą mediów</span>
+  </div>
+
+  <div class="main__socials">
+    <ul class="main__socials-list">
+      <li class="main__socials-item clickable">
+        <img
+          alt="facebook"
+          src="/assets/svg/facebook.svg"
+          class="main__socials-icon-facebook"
+        />
+      </li>
+      <li class="main__socials-item">
+        <img
+          alt="twitter"
+          src="/assets/svg/twitter.svg"
+          class="main__socials-icon-twitter"
+        />
+      </li>
+      <li class="main__socials-item">
+        <img
+          alt="google"
+          src="/assets/svg/google.svg"
+          class="main__socials-icon-google"
+        />
+      </li>
+    </ul>
+  </div>
+</main>

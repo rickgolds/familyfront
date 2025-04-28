@@ -1,0 +1,51 @@
+<img src="/assets/other/01.png" alt="background" class="background" />
+
+<app-header [title]="'Edytuj informacje osobiste'" [showGoBack]="true" />
+
+<main [className]="'scrollable main container edit'">
+  <div [className]="'edit__avatar-container'">
+    <div [className]="'edit__avatar-wrapper clickable'">
+      <img
+        alt="avatar"
+        [className]="'edit__avatar'"
+        src="https://george-fx.github.io/apitex_api/assets/users/01.png"
+      />
+      <div [className]="'edit__avatar-overlay'"></div>
+      <img
+        [className]="'edit__avatar-camera'"
+        src="/assets/svg/camera.svg"
+        alt="edit"
+      />
+    </div>
+  </div>
+  <app-input-field
+    [className]="'edit__input'"
+    [leftIcon]="'/assets/svg/user.svg'"
+    [placeholder]="'Wprowadź swoje imie'"
+  ></app-input-field>
+  <app-input-field
+    [className]="'edit__input'"
+    [leftIcon]="'/assets/svg/phone.svg'"
+    [placeholder]="'Wprowadź swój numer telefonu'"
+  ></app-input-field>
+  <app-input-field
+    [className]="'edit__input'"
+    [leftIcon]="'/assets/svg/mail.svg'"
+    [placeholder]="'Wprowadź swój adres e-mail'"
+  ></app-input-field>
+  <app-input-field
+    [className]="'edit__input'"
+    [leftIcon]="'/assets/svg/profile-calendar.svg'"
+    [placeholder]="'Wprowadź swoją datę urodzenia'"
+  ></app-input-field>
+  <app-input-field
+    [className]="'edit__input-last'"
+    [leftIcon]="'/assets/svg/profile-pin.svg'"
+    [placeholder]="'Wprowadź swój adres zamieszkania'"
+  ></app-input-field>
+  <app-button
+    [className]="'edit__button'"
+    [text]="'Zapisz'"
+    (click)="goBack()"
+  ></app-button>
+</main>

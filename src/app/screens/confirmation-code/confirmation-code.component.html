@@ -1,0 +1,32 @@
+<img src="/assets/other/01.png" alt="background" class="background" />
+
+<app-header [title]="'Verify number'" [showGoBack]="true"></app-header>
+
+<main [className]="'scrollabel container'">
+  <p [className]="'t16 otp__description'">Enter your OTP code here.</p>
+
+  <ul class="otp__list">
+    <li class="otp__item">
+      <input type="text" maxlength="1" class="otp__input" />
+    </li>
+    <li class="otp__item">
+      <input type="text" maxlength="1" class="otp__input" />
+    </li>
+    <li class="otp__item">
+      <input type="text" maxlength="1" class="otp__input" />
+    </li>
+    <li class="otp__item">
+      <input type="text" maxlength="1" class="otp__input" />
+    </li>
+    <li class="otp__item">
+      <input type="text" maxlength="1" class="otp__input" />
+    </li>
+  </ul>
+
+  <p class="t16 otp__resend-wrapper">
+    Didn’t receive the OTP?
+    <span class="otp__resend-text">Resend.</span>
+  </p>
+
+  <app-button [text]="'Confirm'" [routerLink]="'/sign-up-account-created'" />
+</main>

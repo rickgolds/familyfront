@@ -1,0 +1,109 @@
+<img src="/assets/other/01.png" alt="background" class="background" />
+
+<app-header [showGoBack]="true"></app-header>
+
+<main class="scrollable container main">
+  <h1 class="main__title">Zarejestruj się!</h1>
+
+  <form (ngSubmit)="onSubmit()">
+    <app-input-field
+      [(ngModel)]="name"
+      name="name"
+      [leftIcon]="'/assets/svg/user.svg'"
+      [placeholder]="'Wprowadź swoje imię'"
+      class="main__input-field"
+      required
+    ></app-input-field>
+
+    <app-input-field
+      [(ngModel)]="lastname"
+      name="lastname"
+      [leftIcon]="'/assets/svg/user.svg'"
+      [placeholder]="'Wprowadź swoje nazwisko'"
+      class="main__input-field"
+      required
+    ></app-input-field>
+
+    <app-input-field
+      [(ngModel)]="email"
+      name="email"
+      type="email"
+      [leftIcon]="'/assets/svg/mail.svg'"
+      [placeholder]="'Wprowadź swój e-mail'"
+      class="main__input-field"
+      required
+    ></app-input-field>
+
+    <app-input-field
+      [(ngModel)]="nickname"
+      name="nickname"
+      [leftIcon]="'/assets/svg/user.svg'"
+      [placeholder]="'Wprowadź swój nick'"
+      class="main__input-field"
+      required
+    ></app-input-field>
+
+    <app-input-field
+      [(ngModel)]="password"
+      name="password"
+      type="password"
+      [leftIcon]="'/assets/svg/key.svg'"
+      [placeholder]="'Wprowadź hasło'"
+      class="main__input-field"
+      [rightIcon]="'/assets/svg/eye-off.svg'"
+      required
+    ></app-input-field>
+
+    <app-input-field
+      [(ngModel)]="confirmPassword"
+      name="confirmPassword"
+      type="password"
+      [leftIcon]="'/assets/svg/key.svg'"
+      [placeholder]="'Potwierdź hasło'"
+      class="main__input-field-last"
+      [rightIcon]="'/assets/svg/eye-off.svg'"
+      required
+    ></app-input-field>
+
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+    <app-button
+      type="submit"
+      [text]="'Zarejestruj'"
+      class="main__button"
+    ></app-button>
+  </form>
+
+  <span class="t16 main__have-an-account">
+    Masz już konto?
+    <a [routerLink]="['/sign-in']" class="main__sign-in-text">Zaloguj się.</a>
+  </span>
+
+  <span class="t16 main__socials-text">Zaloguj się za pomocą mediów</span>
+
+  <div class="main__socials">
+    <ul class="main__socials-list">
+      <li class="main__socials-item clickable">
+        <img
+          alt="facebook"
+          src="/assets/svg/facebook.svg"
+          class="main__socials-icon-facebook"
+        />
+      </li>
+      <li class="main__socials-item">
+        <img
+          alt="twitter"
+          src="/assets/svg/twitter.svg"
+          class="main__socials-icon-twitter"
+        />
+      </li>
+      <li class="main__socials-item">
+        <img
+          alt="google"
+          src="/assets/svg/google.svg"
+          class="main__socials-icon-google"
+        />
+      </li>
+    </ul>
+  </div>
+</main>

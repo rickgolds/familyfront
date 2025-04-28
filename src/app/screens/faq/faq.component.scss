@@ -1,0 +1,43 @@
+:host {
+  .main {
+    padding-top: 10px;
+
+    &__list-title-wrapper {
+      background-color: #fff7f2;
+      border-radius: 10px;
+      padding: 15px 20px;
+      margin-bottom: 10px;
+      border: 1px solid #fff7f2;
+      flex-direction: row;
+      display: flex;
+      justify-content: space-between;
+
+      &.active {
+        border: 1px solid #ff8a71; /* Выделение границы для активного элемента */
+      }
+    }
+
+    &__list-description-wrapper {
+      padding-left: 18px;
+      margin-bottom: 30px;
+      margin-top: 30px;
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 2px;
+        background-color: #ff8a71;
+        border-radius: 5px 0 0 5px; /* Скругление только левой границы */
+      }
+    }
+
+    &__list-description {
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+  }
+}

@@ -1,0 +1,28 @@
+<app-header [showGoBack]="true" [title]="'FAQ'"></app-header>
+
+<main [className]="'main scrollable container'">
+  <ul [className]="'main__list'">
+    <li [className]="'main__list-item'" *ngFor="let item of faq">
+      <div
+        (click)="toggleItem(item)"
+        [ngClass]="{active: item.isOpen}"
+        [className]="'main__list-title-wrapper clickable'"
+      >
+        <h5 [className]="'number-of-lines-1 main__list-title'">
+          {{ item.title }}
+        </h5>
+        <img
+          [src]="
+            item.isOpen ? '/assets/svg/isOpen.svg' : '/assets/svg/isClose.svg'
+          "
+          alt="arrow"
+        />
+      </div>
+      <div [className]="'main__list-description-wrapper'" *ngIf="item.isOpen">
+        <p [className]="'main__list-description t16'">
+          {{ item.description }}
+        </p>
+      </div>
+    </li>
+  </ul>
+</main>

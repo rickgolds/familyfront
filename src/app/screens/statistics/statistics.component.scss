@@ -1,0 +1,167 @@
+:host {
+  .main {
+    padding-top: 10px;
+
+    &__statistic-types {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #fff6f2;
+      border-radius: 5px;
+      padding: 2px;
+      margin-bottom: 30px;
+    }
+
+    &__statistic-type {
+      height: 28px;
+      width: 49%;
+      background-color: "transparent";
+      color: var(--main-dark);
+      border-radius: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &--active {
+        color: white;
+        background-color: var(--main-dark);
+        border: 1px solid var(--main-dark);
+      }
+    }
+
+    &__date {
+      gap: 10px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    &__date-icon {
+      margin-bottom: 3px;
+    }
+
+    &__card-container {
+      display: flex;
+      align-items: center;
+      padding: 12px 20px 12px 12px;
+      border: 1px solid var(--main-dark);
+      border-radius: 10px;
+      border-color: #ffefe6;
+      margin-bottom: 30px;
+    }
+
+    &__card {
+      width: 62px;
+      height: auto;
+      margin-right: 12px;
+    }
+
+    &__card-info {
+      margin-right: auto;
+    }
+
+    &__card-balance {
+      color: var(--main-dark);
+    }
+
+    &__chart-container {
+      padding: 20px;
+      border: 1px solid var(--main-dark);
+      border-radius: 10px;
+      border-color: #ffefe6;
+      position: relative;
+      margin-bottom: 30px;
+    }
+
+    &__chart {
+      width: 80%;
+      display: grid;
+      gap: 10px;
+      grid-template-columns: repeat(5, 1fr);
+      align-items: end;
+    }
+
+    &__chart-item-1 {
+      height: 126px;
+      background-color: #040325;
+      border-radius: 3px;
+    }
+
+    &__chart-item-2 {
+      height: 95px;
+      background-color: #4f4f66;
+      border-radius: 3px;
+    }
+
+    &__chart-item-3 {
+      height: 51px;
+      background-color: #818192;
+      border-radius: 3px;
+    }
+
+    &__chart-item-4 {
+      height: 37px;
+      background-color: #b4b3be;
+      border-radius: 3px;
+    }
+
+    &__chart-item-5 {
+      height: 8px;
+      background-color: #cdcdd3;
+      border-radius: 3px;
+    }
+
+    &__chart-currency {
+      position: absolute;
+      right: 20px;
+      bottom: 20px;
+      color: var(--main-dark);
+    }
+
+    &__chart-amount {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      color: var(--main-dark);
+      font-size: 32px;
+      font-family: "Source Sans 3", sans-serif;
+    }
+
+    &__chart-amount-after {
+      font-size: 20px;
+    }
+
+    &__transactions-list-item {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      background-color: #fff7f2;
+      border-radius: 10px;
+      padding: 10px;
+      margin-bottom: 6px;
+    }
+
+    &__transactions-list-item-icon {
+      width: 40px;
+      margin-right: 14px;
+    }
+
+    &__transactions-list-item-title {
+      color: var(--main-dark);
+    }
+
+    &__transactions-list-item-info {
+      margin-right: auto;
+    }
+
+    &__transactions-list-item-amount {
+      color: var(--main-dark);
+    }
+
+    &__transactions-list-item-amount-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+  }
+}

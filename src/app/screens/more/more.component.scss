@@ -1,0 +1,25 @@
+:host {
+  .main {
+    &__title {
+      margin-bottom: 20px;
+    }
+
+    &__list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    &__list-link {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+      padding-top: 14px;
+      padding-bottom: 14px;
+      padding-left: 14px;
+      background-color: #fff6f2;
+      border-radius: 10px;
+    }
+  }
+}

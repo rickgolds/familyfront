@@ -1,0 +1,19 @@
+<app-header />
+
+<main [className]="'container main scrollable'">
+  <h2 [className]="'main__title'">Więcej</h2>
+
+  <ul [className]="'main__list'">
+    <li *ngFor="let item of menuItems" [className]="'main__list-item'">
+      <a
+        [className]="'main__list-link clickable'"
+        [routerLink]="item.route !== '' ? item.route : null"
+      >
+        <img [src]="item.icon" alt="icon" [className]="'main__list-icon'" />
+        <h5 [className]="'number-of-lines-1'">{{ item.title }}</h5>
+      </a>
+    </li>
+  </ul>
+</main>
+
+<app-footer />

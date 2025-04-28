@@ -1,0 +1,49 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  height: var(--header-height);
+  justify-content: space-between;
+
+  .header__left-icon {
+    height: 100%;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .header__right-icon {
+    height: 100%;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .header__mdl-element {
+    position: absolute;
+    text-align: center;
+    left: 50%;
+    color: var(--main-dark);
+    transform: translateX(-50%);
+  }
+
+  .header__user-icon {
+    width: 26px;
+    height: 26px;
+    margin-right: 10px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .header__user-name {
+    color: var(--main-dark);
+    text-transform: capitalize;
+  }
+}
