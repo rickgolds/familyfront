@@ -1,13 +1,37 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.background-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/assets/bg.png"); // Ścieżka do obrazu
+  background-size: cover; // Dopasowuje obraz do rozmiaru okna
+  background-position: center; // Centruje obraz
+  background-repeat: no-repeat; // Zapobiega powtarzaniu obrazu
+  filter: blur(5px); // Rozmywa tło globalne
+  -webkit-filter: blur(5px); // Dla kompatybilności z przeglądarkami WebKit
+  z-index: -1; // Ustawia tło za zawartością
+}
+
 .app {
   display: flex;
   flex-direction: column;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.33); // Dodaje cień do aplikacji
+  border-radius: 25px;
   max-width: var(--screen-width);
   margin-left: auto;
   margin-right: auto;
   position: relative;
   width: 100%;
   height: 100%;
-  background-color: var(--main-background);
+  background-color: rgba(255, 255, 255, 0.6); // Lekko przezroczyste tło
   transition: background-color var(--transition-normal);
 }
 
@@ -36,14 +60,27 @@
   padding-right: 20px;
   position: relative;
   overflow-x: auto; /* Allow horizontal scrolling if table exceeds container */
+  background-color: rgba(255, 255, 255, 0.2); // Lekko przezroczyste tło
+  border-radius: 12px; // Zaokrąglone rogi
+  box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.3); // Rozmyty cień wokół krawędzi
+  border: none; // Usunięcie obramowania, jeśli istnieje
+}
+
+app-dashboard .container,
+app-deposits .container {
+  background-color: transparent; // Usunięto tło dla dashboard i deposits
+  box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.3); // Zachowujemy rozmyte krawędzie
 }
 
 .back-drop-filter {
-  background-color: rgba(255, 255, 255, 0.5);
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
+  background-color: rgba(255, 255, 255, 0.3);
   border-radius: 12px;
   box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+app-dashboard .back-drop-filter,
+app-deposits .back-drop-filter {
+  background-color: transparent; // Usunięto tło dla dashboard i deposits
 }
 
 .number-of-lines-1 {
@@ -76,6 +113,18 @@ section {
   opacity: 0;
   transform: translateY(10px);
   animation: fadeIn var(--transition-slow) forwards;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.3
+  ); // Lekko przezroczyste tło dla sekcji
+  border-radius: 12px; // Zaokrąglone rogi
+}
+
+app-dashboard section,
+app-deposits section {
+  background-color: transparent; // Usunięto tło dla dashboard i deposits
 }
 
 @keyframes fadeIn {
