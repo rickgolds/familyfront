@@ -536,6 +536,7 @@
   .tasks {
     width: 100%;
     max-width: 100%;
+    overflow-x: auto;
     margin-bottom: 30px;
 
     &__table {
@@ -544,27 +545,27 @@
       border-collapse: collapse;
       background-color: var(--pastel-color);
       border-radius: 12px;
-      overflow: visible; /* Ensure no clipping */
-      table-layout: auto;
+      overflow: hidden;
+      table-layout: auto; /* Changed from fixed to auto for dynamic sizing */
       box-shadow: 0 4px 12px var(--shadow-color);
     }
 
     th,
     td {
-      padding: 12px 14px; /* Increased padding for better spacing */
+      padding: 12px 10px;
       text-align: left;
       font-family: "Source Sans 3", sans-serif;
       font-size: 14px;
       overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      min-width: 100px; /* Ensure minimum width for columns */
+      white-space: nowrap; /* Prevent text wrapping */
+      text-overflow: ellipsis; /* Add ellipsis for overflow */
     }
 
     th {
       background-color: var(--main-color);
       color: var(--white-color);
       font-weight: 600;
+      /* Removed display: flex and gap */
     }
 
     td {
@@ -596,9 +597,8 @@
       gap: 6px;
       font-family: "Source Sans 3", sans-serif;
       transition: background-color var(--transition-normal);
-      white-space: nowrap;
-      min-width: 100px;
-      text-align: center;
+      white-space: nowrap; /* Prevent wrapping */
+      min-width: 100px; /* Ensure enough space for text and icon */
 
       i {
         font-size: 14px;
@@ -936,13 +936,12 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 8px 12px;
+        padding: 8px 12px; /* Increased padding */
         border-bottom: 1px solid #eee;
         text-align: right;
         font-size: 12px;
         font-family: "Source Sans 3", sans-serif;
-        white-space: normal;
-        min-width: 0; /* Allow mobile to adapt */
+        white-space: normal; /* Allow wrapping on mobile */
       }
 
       td:before {
@@ -960,7 +959,7 @@
       &__status {
         padding: 4px 8px;
         font-size: 12px;
-        min-width: 80px;
+        min-width: 80px; /* Reduced for mobile */
         white-space: nowrap;
 
         i {
