@@ -36,7 +36,6 @@ export class DepositsComponent implements OnInit, OnDestroy {
     assigned_to: undefined,
     list_id: undefined,
     due_date: undefined,
-    points: 0, // Dodane pole punktów
   };
   newListName: string | null = null;
   editList: TaskList | null = null;
@@ -46,40 +45,32 @@ export class DepositsComponent implements OnInit, OnDestroy {
   private pollingInterval: any;
   today: string = new Date().toISOString().split('T')[0];
 
-  defaultTasks: {title: string; description: string; points: number}[] = [
+  // Domyślne dzienne zadania
+  defaultTasks: {title: string; description: string}[] = [
     {
       title: 'Posprzątaj salon',
       description: 'Uporządkuj salon przed rodzinnym spotkaniem.',
-      points: 5,
     },
     {
       title: 'Zrób zakupy spożywcze',
       description: 'Kup produkty na rodzinne wydarzenie.',
-      points: 10,
     },
     {
       title: 'Przygotuj śniadanie',
       description: 'Przygotuj śniadanie dla rodziny.',
-      points: 7,
     },
-    {
-      title: 'Wynieś śmieci',
-      description: 'Wynieś śmieci z kuchni i łazienki.',
-      points: 3,
-    },
+    {title: 'Wynieś śmieci', description: 'Wynieś śmieci z kuchni i łazienki.'},
     {
       title: 'Udekoruj stół',
       description: 'Przygotuj stół na rodzinne spotkanie.',
-      points: 8,
     },
   ];
 
+  // Stan rozwinięcia sekcji "Dzienne zadania"
   showDefaultTasks: boolean = false;
-  selectedDefaultTask: {
-    title: string;
-    description: string;
-    points: number;
-  } | null = null;
+  // Wybrane domyślne zadanie do przypisania
+  selectedDefaultTask: {title: string; description: string} | null = null;
+  // Wybrany użytkownik do przypisania zadania
   selectedUserForDefaultTask: number | null = null;
 
   constructor(private metaService: Meta, private authService: AuthService) {}
@@ -144,6 +135,7 @@ export class DepositsComponent implements OnInit, OnDestroy {
         const uniqueTasks = Array.from(
           new Map(tasks.map((task) => [task.id, task])).values()
         );
+        // Aktualizacja tasks tylko po otrzymaniu danych
         this.tasks = uniqueTasks;
       },
       error: (err) => {
@@ -245,7 +237,6 @@ export class DepositsComponent implements OnInit, OnDestroy {
           assigned_to: undefined,
           list_id: this.newTask.list_id,
           due_date: undefined,
-          points: 0,
         };
       },
       error: (err) => {
@@ -304,11 +295,7 @@ export class DepositsComponent implements OnInit, OnDestroy {
     this.showDefaultTasks = !this.showDefaultTasks;
   }
 
-  selectDefaultTask(task: {
-    title: string;
-    description: string;
-    points: number;
-  }): void {
+  selectDefaultTask(task: {title: string; description: string}): void {
     this.selectedDefaultTask = task;
     this.selectedUserForDefaultTask = null;
   }
@@ -323,14 +310,13 @@ export class DepositsComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const today = new Date().toISOString().split('T')[0];
+    const today = new Date().toISOString().split('T')[0]; // Format YYYY-MM-DD
     const taskToAdd: Partial<Task> = {
       title: this.selectedDefaultTask.title,
       description: this.selectedDefaultTask.description,
       assigned_to: this.selectedUserForDefaultTask,
       list_id: this.selectedList.id,
       due_date: today,
-      points: this.selectedDefaultTask.points,
     };
 
     this.authService.addTask(taskToAdd).subscribe({

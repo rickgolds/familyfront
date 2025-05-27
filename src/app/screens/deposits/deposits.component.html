@@ -5,14 +5,16 @@
 ></app-header>
 
 <main class="scrollable main container">
-  <h2 class="title">Family Event List</h2>
+  <h2 class="title"><i class="fas fa-list-ul"></i> Family Event List</h2>
 
   <!-- Sekcja zarządzania listami -->
   <section class="lists">
     <div class="lists__header">
-      <h3 class="lists__title">Twoje listy</h3>
+      <h3 class="lists__title">
+        <i class="fas fa-folder-open"></i> Twoje listy
+      </h3>
       <button class="lists__add-button" (click)="newListName = ''">
-        <img src="/assets/svg/plus.svg" alt="Dodaj listę" />
+        <i class="fas fa-plus"></i>
       </button>
     </div>
 
@@ -24,9 +26,11 @@
         placeholder="Nazwa nowej listy"
         class="lists__new-input"
       />
-      <button class="lists__new-save" (click)="addTaskList()">Dodaj</button>
+      <button class="lists__new-save" (click)="addTaskList()">
+        <i class="fas fa-check"></i> Dodaj
+      </button>
       <button class="lists__new-cancel" (click)="newListName = null">
-        Anuluj
+        <i class="fas fa-times"></i> Anuluj
       </button>
     </div>
 
@@ -41,7 +45,7 @@
         (click)="selectList(list)"
       >
         <span *ngIf="!editList || editList.id !== list.id; else editListName">
-          {{ list.name }}
+          <i class="fas fa-tasks"></i> {{ list.name }}
         </span>
         <ng-template #editListName>
           <input
@@ -73,7 +77,7 @@
   <!-- Sekcja "Dzienne zadania" -->
   <section class="default-tasks" *ngIf="selectedList">
     <button class="default-tasks__toggle" (click)="toggleDefaultTasks()">
-      Dzienne zadania
+      <i class="fas fa-sun"></i> Dzienne zadania
       <span class="default-tasks__toggle-icon">{{
         showDefaultTasks ? "▲" : "▼"
       }}</span>
@@ -86,18 +90,25 @@
         class="default-tasks__item"
         (click)="selectDefaultTask(task)"
       >
-        {{ task.title }}
+        <i class="fas fa-check-circle"></i> {{ task.title }} ({{
+          task.points
+        }}
+        punktów)
       </button>
     </div>
 
     <!-- Panel wyboru użytkownika dla domyślnego zadania -->
     <div class="default-tasks__assign" *ngIf="selectedDefaultTask">
       <h4 class="default-tasks__assign-title">
-        Przypisz zadanie: {{ selectedDefaultTask.title }}
+        <i class="fas fa-user-plus"></i> Przypisz zadanie:
+        {{ selectedDefaultTask.title }} ({{
+          selectedDefaultTask.points
+        }}
+        punktów)
       </h4>
       <select
         [(ngModel)]="selectedUserForDefaultTask"
-        class="default-tasks__assign-select"
+        class="settings__assign-user-select"
       >
         <option [value]="null" disabled>Do kogo przypisać?</option>
         <option *ngFor="let user of users" [value]="user.id">
@@ -109,13 +120,13 @@
           class="default-tasks__assign-confirm"
           (click)="addDefaultTask()"
         >
-          Dodaj
+          <i class="fas fa-check"></i> Dodaj
         </button>
         <button
           class="default-tasks__assign-cancel"
           (click)="cancelDefaultTask()"
         >
-          Anuluj
+          <i class="fas fa-times"></i> Anuluj
         </button>
       </div>
     </div>
@@ -123,25 +134,46 @@
 
   <!-- Formularz do dodawania nowego zadania -->
   <section class="task-form" *ngIf="selectedList">
-    <h3 class="task-form__title">Dodaj nowe zadanie</h3>
+    <h3 class="task-form__title">
+      <i class="fas fa-plus-circle"></i> Dodaj nowe zadanie
+    </h3>
     <div class="task-form__fields">
-      <input
-        type="text"
-        [(ngModel)]="newTask.title"
-        placeholder="Tytuł zadania"
-        class="task-form__input"
-      />
-      <textarea
-        [(ngModel)]="newTask.description"
-        placeholder="Opis (opcjonalnie)"
-        class="task-form__textarea"
-      ></textarea>
-      <select [(ngModel)]="newTask.assigned_to" class="task-form__select">
-        <option [value]="null" disabled>Do kogo przypisać?</option>
-        <option *ngFor="let user of users" [value]="user.id">
-          {{ user.name }} {{ user.lastname }}
-        </option>
-      </select>
+      <div class="task-form__input-wrapper">
+        <i class="fas fa-heading task-form__input-icon"></i>
+        <input
+          type="text"
+          [(ngModel)]="newTask.title"
+          placeholder="Tytuł zadania"
+          class="task-form__input"
+        />
+      </div>
+      <div class="task-form__input-wrapper">
+        <i class="fas fa-align-left task-form__input-icon"></i>
+        <textarea
+          [(ngModel)]="newTask.description"
+          placeholder="Opis (opcjonalnie)"
+          class="task-form__textarea"
+        ></textarea>
+      </div>
+      <div class="task-form__input-wrapper">
+        <i class="fas fa-user task-form__input-icon"></i>
+        <select [(ngModel)]="newTask.assigned_to" class="task-form__select">
+          <option [value]="null" disabled>Do kogo przypisać?</option>
+          <option *ngFor="let user of users" [value]="user.id">
+            {{ user.name }} {{ user.lastname }}
+          </option>
+        </select>
+      </div>
+      <div class="task-form__input-wrapper">
+        <i class="fas fa-star task-form__input-icon"></i>
+        <input
+          type="number"
+          [(ngModel)]="newTask.points"
+          placeholder="Punkty za zadanie"
+          class="task-form__input"
+          min="0"
+        />
+      </div>
       <div class="task-form__date-wrapper">
         <input
           type="date"
@@ -151,11 +183,10 @@
         />
         <i class="fas fa-calendar-alt task-form__date-icon"></i>
       </div>
-      <app-button
-        [text]="'Dodaj zadanie'"
-        (click)="addTask()"
-        class="task-form__button"
-      />
+      <!-- Replaced app-button with a plain button to ensure proper rendering -->
+      <button class="task-form__button" (click)="addTask()">
+        <i class="fas fa-plus"></i> Dodaj zadanie
+      </button>
     </div>
   </section>
 
@@ -164,13 +195,14 @@
     <table class="tasks__table">
       <thead>
         <tr>
-          <th>Tytuł</th>
-          <th>Opis</th>
-          <th>Przypisane do</th>
-          <th>Utworzone przez</th>
-          <th>Data wykonania</th>
-          <th>Status</th>
-          <th>Akcje</th>
+          <th><i class="fas fa-heading"></i> Tytuł</th>
+          <th><i class="fas fa-align-left"></i> Opis</th>
+          <th><i class="fas fa-user"></i> Przypisane do</th>
+          <th><i class="fas fa-user-edit"></i> Utworzone przez</th>
+          <th><i class="fas fa-star"></i> Punkty</th>
+          <th><i class="fas fa-calendar"></i> Data wykonania</th>
+          <th><i class="fas fa-check-square"></i> Status</th>
+          <th><i class="fas fa-cog"></i> Akcje</th>
         </tr>
       </thead>
       <tbody>
@@ -230,6 +262,23 @@
           </td>
 
           <td
+            *ngIf="!editTask || editTask.id !== task.id; else editPoints"
+            data-label="Punkty"
+          >
+            {{ task.points || 0 }}
+          </td>
+          <ng-template #editPoints>
+            <td data-label="Punkty">
+              <input
+                type="number"
+                [(ngModel)]="editTask!.points"
+                class="task-edit__input"
+                min="0"
+              />
+            </td>
+          </ng-template>
+
+          <td
             *ngIf="!editTask || editTask.id !== task.id; else editDueDate"
             data-label="Data wykonania"
           >
@@ -251,6 +300,14 @@
               [ngClass]="task.status === 'completed' ? 'completed' : 'pending'"
               (click)="toggleStatus(task)"
             >
+              <i
+                class="fas"
+                [ngClass]="
+                  task.status === 'completed'
+                    ? 'fa-check-circle'
+                    : 'fa-hourglass-half'
+                "
+              ></i>
               {{ task.status === "completed" ? "Ukończone" : "W trakcie" }}
             </span>
           </td>
@@ -261,20 +318,20 @@
               (click)="startEdit(task)"
               class="tasks__action-button tasks__action-button--edit"
             >
-              Edytuj
+              <i class="fas fa-edit"></i> Edytuj
             </button>
             <button
               *ngIf="editTask && editTask.id === task.id"
               (click)="updateTask()"
               class="tasks__action-button tasks__action-button--save"
             >
-              Zapisz
+              <i class="fas fa-save"></i> Zapisz
             </button>
             <button
               (click)="deleteTask(task.id)"
               class="tasks__action-button tasks__action-button--delete"
             >
-              Usuń
+              <i class="fas fa-trash"></i> Usuń
             </button>
           </td>
         </tr>

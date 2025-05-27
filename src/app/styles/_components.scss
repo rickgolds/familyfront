@@ -2,13 +2,14 @@ app-sign-in {
   display: flex;
   flex-direction: column;
   height: 100%;
+  background-color: var(--main-background);
 }
 
 app-onboarding {
   height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: #040325;
+  background-color: var(--main-dark);
 }
 
 app-tab-navigator {
@@ -25,4 +26,7 @@ app-more {
   display: flex;
   flex-direction: column;
   height: 100%;
+  background-color: var(--main-background);
+  border-radius: 12px;
+  overflow: hidden;
 }

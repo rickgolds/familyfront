@@ -1,16 +1,17 @@
 export interface Task {
   id: number;
   title: string;
-  description?: string; // Opcjonalne, bo może być null w bazie
+  description?: string;
   status: string;
   assigned_to: number;
   created_by: number;
   list_id: number;
-  due_date?: string; // Opcjonalne, bo może być null w bazie
-  created_at?: string; // Opcjonalne
-  updated_at?: string; // Opcjonalne
-  created_by_name?: string; // Dodane przez backend (JOIN z users)
-  created_by_lastname?: string; // Dodane przez backend
-  assigned_to_name?: string; // Dodane przez backend
-  assigned_to_lastname?: string; // Dodane przez backend
+  due_date?: string;
+  created_at?: string;
+  updated_at?: string;
+  created_by_name?: string;
+  created_by_lastname?: string;
+  assigned_to_name?: string;
+  assigned_to_lastname?: string;
+  points?: number; // Dodane pole punktów
 }

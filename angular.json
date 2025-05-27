@@ -29,8 +29,8 @@
               },
               {
                 "type": "anyComponentStyle",
-                "maximumWarning": "10kb",
-                "maximumError": "15kb"
+                "maximumWarning": "110kb",
+                "maximumError": "500kb"
               }
             ],
             "tsConfig": "tsconfig.app.json",
@@ -54,11 +54,12 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "3kb",
-                  "maximumError": "5kb"
+                  "maximumWarning": "500kb",
+                  "maximumError": "5mb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "serviceWorker": "ngsw-config.json"
             },
             "development": {
               "optimization": false,

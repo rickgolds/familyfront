@@ -5,30 +5,47 @@
 <main [className]="'scrollable main'" *ngIf="!loading">
   <!-- Sekcja najnowszych zadań -->
   <section [className]="'latest-tasks'">
-    <h5 [className]="'latest-tasks__title'">Najnowsze zadania:</h5>
+    <h5 [className]="'latest-tasks__title'">
+      <i class="fas fa-clock"></i> Najnowsze zadania:
+    </h5>
     <swiper-container slides-per-view="auto" class="swiper" space-between="16">
       <swiper-slide *ngFor="let task of latestTasks" class="swiper-slide">
         <div [className]="'latest-tasks__item'">
           <div [className]="'latest-tasks__item-info'">
-            <span [className]="'latest-tasks__item-title'">{{
-              task.title
-            }}</span>
+            <span [className]="'latest-tasks__item-title'"
+              ><i class="fas fa-tasks"></i> {{ task.title }}</span
+            >
             <span [className]="'latest-tasks__item-list'"
-              >Lista: {{ task.listName }}</span
+              ><i class="fas fa-folder"></i> Lista: {{ task.listName }}</span
             >
             <span [className]="'latest-tasks__item-assigned'"
-              >Przypisane do: {{ task.assigned_to_name }}
-              {{ task.assigned_to_lastname }}</span
+              ><i class="fas fa-user"></i> Przypisane do:
+              {{ task.assigned_to_name }} {{ task.assigned_to_lastname }}</span
             >
-            <span [className]="'latest-tasks__item-status'">{{
-              task.status === "completed" ? "Ukończone" : "W trakcie"
-            }}</span>
+            <span [className]="'latest-tasks__item-status'"
+              ><i
+                class="fas"
+                [ngClass]="
+                  task.status === 'completed'
+                    ? 'fa-check-circle'
+                    : 'fa-hourglass-half'
+                "
+              ></i>
+              {{
+                task.status === "completed" ? "Ukończone" : "W trakcie"
+              }}</span
+            >
+            <span [className]="'latest-tasks__item-points'"
+              ><i class="fas fa-star"></i> Punkty: {{ task.points || 0 }}</span
+            >
           </div>
         </div>
       </swiper-slide>
       <swiper-slide *ngIf="latestTasks.length === 0" class="swiper-slide">
         <div [className]="'latest-tasks__item'">
-          <span>Brak zadań do wyświetlenia</span>
+          <span
+            ><i class="fas fa-info-circle"></i> Brak zadań do wyświetlenia</span
+          >
         </div>
       </swiper-slide>
     </swiper-container>
@@ -36,16 +53,33 @@
 
   <!-- Sekcja szybkiego przypisania zadania -->
   <section [className]="'users'">
-    <h5 [className]="'users__title'">Szybkie przypisanie zadania:</h5>
+    <h5 [className]="'users__title'">
+      <i class="fas fa-user-plus"></i> Szybkie przypisanie zadania:
+    </h5>
     <form (ngSubmit)="assignTask()" class="quick-assign-form">
-      <input
-        type="text"
-        [(ngModel)]="newTaskTitle"
-        name="newTaskTitle"
-        placeholder="Tytuł zadania"
-        class="quick-assign-input"
-        required
-      />
+      <div class="quick-assign-input-wrapper">
+        <i class="fas fa-heading quick-assign-input-icon"></i>
+        <input
+          type="text"
+          [(ngModel)]="newTaskTitle"
+          name="newTaskTitle"
+          placeholder="Tytuł zadania"
+          class="quick-assign-input"
+          required
+        />
+      </div>
+      <div class="quick-assign-input-wrapper">
+        <i class="fas fa-star quick-assign-input-icon"></i>
+        <input
+          type="number"
+          [(ngModel)]="newTaskPoints"
+          name="newTaskPoints"
+          placeholder="Punkty za zadanie"
+          class="quick-assign-input"
+          min="0"
+          required
+        />
+      </div>
       <swiper-container
         slides-per-view="auto"
         class="swiper"
@@ -64,14 +98,18 @@
               [src]="user.photo || '/assets/svg/boy.png'"
               [className]="'users__item-photo'"
             />
-            <span [className]="'users__item-name t12 number-of-lines-1'">{{
-              user.name
-            }}</span>
+            <span [className]="'users__item-name t12 number-of-lines-1'"
+              ><i class="fas fa-user"></i> {{ user.name }}</span
+            >
+            <span [className]="'users__item-points'"
+              ><i class="fas fa-star"></i>
+              {{ user.total_points || 0 }} pkt</span
+            >
           </div>
         </swiper-slide>
       </swiper-container>
       <button type="submit" class="quick-assign-button">
-        Przypisz zadanie
+        <i class="fas fa-check"></i> Przypisz zadanie
       </button>
     </form>
   </section>

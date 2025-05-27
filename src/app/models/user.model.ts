@@ -2,5 +2,8 @@ export interface User {
   id: number;
   name: string;
   lastname: string;
-  photo: string;
+  email?: string;
+  nickname?: string;
+  photo?: string;
+  total_points?: number; // Dodane pole sumy punktów
 }

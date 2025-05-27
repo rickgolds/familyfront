@@ -8,7 +8,7 @@ import {jwtDecode} from 'jwt-decode';
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://192.168.1.30:3000';
+  private apiUrl = 'http://localhost:3000';
 
   private userSubject = new BehaviorSubject<any>(null);
   user$ = this.userSubject.asObservable();

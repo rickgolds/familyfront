@@ -1,20 +1,28 @@
 :root {
   // Colors
-  --main-dark: #040325;
+  --main-dark: #2a2a3b;
   --white-color: #fff;
   --text-color: #6c6d84;
   --main-color: #ff8a71;
-  --pastel-color: #fcedea;
-  --golden-color: #d7bb7b;
-  --border-color: #eeeeee;
-  --main-background: #f5fafb;
-  --input-background: #fbf8f2;
+  --pastel-color: #fff1ee;
+  --golden-color: #f4c26f;
+  --border-color: #e8e8e8;
+  --main-background: #fdf7f4;
+  --input-background: #fff6f2;
   --image-background: #f7f7fd;
+  --accent-warm: #ffb3a7;
+  --accent-soft: #ffe4b5;
+  --shadow-color: rgba(0, 0, 0, 0.1);
 
   // Header and bottom bar
   --header-height: 50px;
   --footer-height: 70px;
 
   // Screen width
-  --screen-width: 650px;
+  --screen-width: 1200px; /* Increased from 650px to fit wider table */
+
+  // Transitions
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
 }
