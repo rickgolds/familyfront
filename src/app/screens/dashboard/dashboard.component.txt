@@ -40,6 +40,7 @@ export class DashboardComponent implements OnInit {
   isFetchingTasks: boolean = false;
 
   newTaskTitle: string = '';
+  newTaskPoints: number = 0; // Nowe pole dla punktów
   selectedUserId: number | null = null;
 
   constructor(
@@ -56,7 +57,7 @@ export class DashboardComponent implements OnInit {
     this.authService.getUsers().subscribe({
       next: (users) => {
         console.log('Pobrani użytkownicy:', users);
-        this.users = users;
+        this.users = users; // Zakładam, że users zawiera total_points z serwera
         this.usersIsLoading = false;
       },
       error: (err) => {
@@ -69,7 +70,6 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  // Pobierz wszystkie listy zadań użytkownika i znajdź "Szybkie zadania"
   getTaskLists() {
     const token = sessionStorage.getItem('token');
     console.log('Token w getTaskLists:', token);
@@ -85,7 +85,6 @@ export class DashboardComponent implements OnInit {
         if (taskLists && taskLists.length > 0) {
           this.taskLists = taskLists;
 
-          // Sprawdź, czy istnieje lista "Szybkie zadania"
           const quickTasksList = taskLists.find(
             (list) => list.name === 'Szybkie zadania'
           );
@@ -115,12 +114,10 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  // Utwórz listę "Szybkie zadania", jeśli nie istnieje
   createQuickTasksList() {
     this.authService.addTaskList('Szybkie zadania').subscribe({
       next: (response) => {
         console.log('Utworzono listę "Szybkie zadania":', response);
-        // Po utworzeniu pobierz listy ponownie, aby uzyskać ID nowej listy
         this.authService.getTaskLists().subscribe({
           next: (taskLists: TaskList[]) => {
             this.taskLists = taskLists;
@@ -154,7 +151,6 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  // Pobierz zadania ze wszystkich list i posortuj je
   getLatestTasksFromAllLists() {
     if (this.isFetchingTasks) {
       console.log('Pobieranie zadań już w toku, pomijam...');
@@ -186,7 +182,6 @@ export class DashboardComponent implements OnInit {
     forkJoin(taskRequests).subscribe({
       next: (allTasks: any[][]) => {
         const flattenedTasks = allTasks.flat();
-        // Deduplikacja po id
         const uniqueTasks = Array.from(
           new Map(flattenedTasks.map((task) => [task.id, task])).values()
         );
@@ -226,14 +221,17 @@ export class DashboardComponent implements OnInit {
       description: '',
       assigned_to: this.selectedUserId,
       list_id: this.quickTasksListId,
+      points: this.newTaskPoints || 0, // Dodajemy punkty
     };
 
     this.authService.addTask(task).subscribe({
       next: () => {
         alert('Zadanie zostało przypisane do listy "Szybkie zadania"!');
         this.newTaskTitle = '';
+        this.newTaskPoints = 0; // Resetujemy punkty
         this.selectedUserId = null;
         this.getLatestTasksFromAllLists();
+        this.getUsers(); // Odświeżamy użytkowników, aby zaktualizować total_points
       },
       error: (err) => {
         console.error('Błąd przypisania zadania:', err);

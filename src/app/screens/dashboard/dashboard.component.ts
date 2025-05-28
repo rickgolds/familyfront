@@ -71,14 +71,15 @@ export class DashboardComponent implements OnInit {
   }
 
   getTaskLists() {
-    const token = sessionStorage.getItem('token');
+    const token =
+      localStorage.getItem('auth_token') ||
+      sessionStorage.getItem('auth_token');
     console.log('Token w getTaskLists:', token);
     if (!token) {
       console.error('Brak tokena autoryzacji. Przekierowuję na /sign-in');
       this.router.navigate(['/sign-in']);
       return;
     }
-
     this.authService.getTaskLists().subscribe({
       next: (taskLists: TaskList[]) => {
         console.log('Pobrane listy zadań:', taskLists);
@@ -159,7 +160,9 @@ export class DashboardComponent implements OnInit {
 
     this.isFetchingTasks = true;
 
-    const token = sessionStorage.getItem('token');
+    const token =
+      localStorage.getItem('auth_token') ||
+      sessionStorage.getItem('auth_token');
     if (!token) {
       console.error('Brak tokena autoryzacji. Przekierowuję na /sign-in');
       this.router.navigate(['/sign-in']);
